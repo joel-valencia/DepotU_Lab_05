@@ -20,6 +20,13 @@ var main = function() {
     }
     var timer = setInterval(addSecond, 1000);
     
+    function endPrompt() {
+        var response = prompt("Play again?").toLowerCase();
+        if (response == "yes") {
+            location.reload();
+        }
+    }
+    
     $(document).keydown(function(event){ 
         if (event.which == 16) {
             $('#keyboard-lower-container').hide();
@@ -58,6 +65,7 @@ var main = function() {
                     clearInterval(timer);
                     var wpm = Math.floor(((60 / seconds) * words) - (mistakes * 2));
                     $('#next-letter').text(wpm + " wpm")
+                    var timer = setTimeout(endPrompt, 2000);
                 } else {
                     $('#words').text(sentences[sentenceIndex]);
                     $('#words-typed').empty();
