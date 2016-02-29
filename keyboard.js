@@ -2,7 +2,7 @@ var main = function() {
     $('#keyboard-upper-container').hide();
     
     var sentenceIndex = 0;
-    var sentences = ['one two thre', 'Too ato too nOt enot one totA not anot tOO aNot', 'oat itain oat tain nate eate tea anne inant nean', 'itant eate anot eat nato inate eat anot tain eat', 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
+    var sentences = ['one two three', 'four five six', 'seven'];
     var letterIndex = 0;
     var nextLetter = sentences[sentenceIndex].charAt(letterIndex);
 
@@ -38,11 +38,13 @@ var main = function() {
         
         if (letter == nextLetter) {
             letterIndex++;
+            $('#words-typed').append('<div class="glyphicon glyphicon-ok"></div>');
             
             if (letterIndex == sentences[sentenceIndex].length) {
                 sentenceIndex++;
                 letterIndex = 0;
                 $('#words').text(sentences[sentenceIndex]);
+                $('#words-typed').empty();
             }
             
             nextLetter = sentences[sentenceIndex].charAt(letterIndex);
@@ -50,6 +52,8 @@ var main = function() {
             
             var letterSpacing = parseInt($('#word-container').css("letter-spacing"), 10);
             $('#block').css("margin-left", "calc(" + letterIndex + "ch + " + (letterSpacing * letterIndex) + "px");
+        } else {
+            $('#words-typed').append('<div class="glyphicon glyphicon-remove"></div>');
         }
         
 
