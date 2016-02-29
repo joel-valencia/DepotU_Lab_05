@@ -8,6 +8,9 @@ var main = function() {
 
     $('#words').text(sentences[sentenceIndex]);
     $('#next-letter').text(nextLetter);
+    if (nextLetter == " ") {
+        $('#next-letter').text("[space]");
+    }
 
     
     $(document).keydown(function(event){ 
@@ -49,6 +52,9 @@ var main = function() {
             
             nextLetter = sentences[sentenceIndex].charAt(letterIndex);
             $('#next-letter').text(sentences[sentenceIndex].charAt(letterIndex));
+            if (nextLetter == " ") {
+                $('#next-letter').text("[space]");
+            }
             
             var letterSpacing = parseInt($('#word-container').css("letter-spacing"), 10);
             $('#block').css("margin-left", "calc(" + letterIndex + "ch + " + (letterSpacing * letterIndex) + "px");
