@@ -16,7 +16,19 @@ var main = function() {
             $('#keyboard-lower-container').show();
             
         }
+        $('.key').css("background-color", "#f5f5f5");
     });
+    
+    $(document).keypress(function(event){ 
+        console.log(String.fromCharCode(event.which));
+        
+        if ($("#" + event.which).length) {
+            $("#" + event.which).css("background-color", "yellow");
+        } else {
+            $("#" + String.fromCharCode(event.which)).css("background-color", "yellow");
+        }
+    });
+    
 }
 
 $(document).ready(main);
