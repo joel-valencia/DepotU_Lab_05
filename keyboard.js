@@ -7,6 +7,7 @@ var main = function() {
     var words = 0;
     var mistakes = 0;
     var seconds = 0;
+    var started = false;
     var nextLetter = sentences[sentenceIndex].charAt(letterIndex);
 
     $('#words').text(sentences[sentenceIndex]);
@@ -18,7 +19,6 @@ var main = function() {
     function addSecond() {
         seconds++;
     }
-    var timer = setInterval(addSecond, 1000);
     
     function endPrompt() {
         var response = prompt("Play again?").toLowerCase();
@@ -31,14 +31,20 @@ var main = function() {
         if (event.which == 16) {
             $('#keyboard-lower-container').hide();
             $('#keyboard-upper-container').show();
+        } else {
+            if (started == false) {
+                started = true;
+                console.log("started timer");
+                var timer = setInterval(addSecond, 1000);
+            }
         }
+        console.log(started);
     });
     
     $(document).keyup(function(event){ 
         if (event.which == 16) {
             $('#keyboard-upper-container').hide();
             $('#keyboard-lower-container').show();
-            
         }
         $('.key').css("background-color", "#f5f5f5");
     });
