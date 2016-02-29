@@ -2,7 +2,7 @@ var main = function() {
     $('#keyboard-upper-container').hide();
     
     var sentenceIndex = 0;
-    var sentences = ['one two three', 'four five six', 'seven'];
+    var sentences = ['ten ate neite ate nee enet ite ate inet ent eate', 'Too ato too nOt enot one totA not anot tOO aNot', 'oat itain oat tain nate eate tea anne inant nean', 'itant eate anot eat nato inate eat anot tain eat', 'nee ene ate ite tent tiet ent ine ene ete ene ate'];
     var letterIndex = 0;
     var words = 0;
     var mistakes = 0;
