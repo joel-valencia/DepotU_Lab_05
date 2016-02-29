@@ -4,6 +4,9 @@ var main = function() {
     var sentenceIndex = 0;
     var sentences = ['one two three', 'four five six', 'seven'];
     var letterIndex = 0;
+    var words = 0;
+    var mistakes = 0;
+    var seconds = 0;
     var nextLetter = sentences[sentenceIndex].charAt(letterIndex);
 
     $('#words').text(sentences[sentenceIndex]);
@@ -12,6 +15,10 @@ var main = function() {
         $('#next-letter').text("[space]");
     }
 
+    function addSecond() {
+        seconds++;
+    }
+    var timer = setInterval(addSecond, 1000);
     
     $(document).keydown(function(event){ 
         if (event.which == 16) {
@@ -46,13 +53,22 @@ var main = function() {
             if (letterIndex == sentences[sentenceIndex].length) {
                 sentenceIndex++;
                 letterIndex = 0;
-                $('#words').text(sentences[sentenceIndex]);
-                $('#words-typed').empty();
+                if (sentenceIndex == sentences.length) {
+                    words++;
+                    clearInterval(timer);
+                    var wpm = Math.floor(((60 / seconds) * words) - (mistakes * 2));
+                    $('#next-letter').text(wpm + " wpm")
+                } else {
+                    $('#words').text(sentences[sentenceIndex]);
+                    $('#words-typed').empty();
+                    words++;
+                }
             }
             
             nextLetter = sentences[sentenceIndex].charAt(letterIndex);
             $('#next-letter').text(sentences[sentenceIndex].charAt(letterIndex));
             if (nextLetter == " ") {
+                words++;
                 $('#next-letter').text("[space]");
             }
             
@@ -60,6 +76,7 @@ var main = function() {
             $('#block').css("margin-left", "calc(" + letterIndex + "ch + " + (letterSpacing * letterIndex) + "px");
         } else {
             $('#words-typed').append('<div class="glyphicon glyphicon-remove"></div>');
+            mistakes++;
         }
         
 
