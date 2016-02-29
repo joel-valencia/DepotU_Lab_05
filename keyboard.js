@@ -34,11 +34,9 @@ var main = function() {
         } else {
             if (started == false) {
                 started = true;
-                console.log("started timer");
                 var timer = setInterval(addSecond, 1000);
             }
         }
-        console.log(started);
     });
     
     $(document).keyup(function(event){ 
